@@ -19,8 +19,13 @@ git diff dom webgl
 ## How it works
 
 - The effect is enabled on devices with a mouse, from 769px wide.
-- The list sits above the image and uses `mix-blend-mode`, so the text stays readable over it.
-- In the `webgl` branch the DOM stays in charge: GSAP animates an invisible proxy, and on every frame the plane copies its position, scale and opacity from GSAP, without reading the layout.
+- In both versions, the list sits above the image and uses `mix-blend-mode`, so the text stays readable over it.
+
+The `webgl` branch keeps the same list and the same images, with three changes:
+
+1. **The DOM stays in charge.** The images are gone from the DOM: GSAP animates an invisible proxy, and on every frame the plane copies its position, scale and opacity from GSAP, without reading the layout.
+2. **The lag becomes the bend.** The plane trails behind the cursor, and that offset curves its vertices (`deformationCurve` in `vertex.glsl`).
+3. **The image swap bends.** When the preview moves to another row, the next image slides in behind a curved edge (`bend` and `edge` in `fragment.glsl`).
 
 ## Getting started
 

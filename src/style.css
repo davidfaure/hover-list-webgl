@@ -120,24 +120,15 @@ body {
 }
 
 .follower__inner {
-  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   will-change: transform;
 }
 
-.follower__visual {
-  position: absolute;
+.webgl {
+  position: fixed;
   inset: 0;
-  will-change: transform;
-}
-
-.follower__visual img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  pointer-events: none;
 }
 
 @media (max-width: 1024px) {

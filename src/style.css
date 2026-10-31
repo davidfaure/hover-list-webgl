@@ -1,0 +1,144 @@
+:root {
+  --color-bg: #fafafa;
+  --color-text: #0e0c0d;
+  --color-line: rgba(14, 12, 13, 0.15);
+  --font-display: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: max(calc(100vw / 1440 * 10), 8px);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.works {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.6rem;
+  align-content: center;
+  align-items: start;
+  min-height: 100vh;
+  padding: 12rem 3.2rem;
+}
+
+.works__title {
+  grid-column: 1 / 5;
+  font-family: var(--font-display);
+  font-size: 7rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.works__list {
+  grid-column: 5 / 13;
+  list-style: none;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.works__item {
+  border-top: 1px solid var(--color-line);
+}
+
+.works__link {
+  display: grid;
+  grid-template-columns: 8rem 1fr auto;
+  align-items: center;
+  gap: 2.4rem;
+  padding: 2.4rem 0;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.works__list:has(.works__item:hover) .works__item:not(:hover) .works__link {
+  opacity: 0.35;
+}
+
+.works__year {
+  font-size: 1.1rem;
+  opacity: 0.4;
+}
+
+.works__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.works__name {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.works__client {
+  font-size: 1.4rem;
+  opacity: 0.5;
+}
+
+.works__cta {
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: underline;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.works__item:hover .works__cta {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  .works {
+    gap: 8rem 1.6rem;
+  }
+
+  .works__title,
+  .works__list {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: min(calc(100vw / 375 * 10), 13px);
+  }
+
+  .works {
+    gap: 6rem 1.6rem;
+    padding: 8rem 1.6rem;
+  }
+
+  .works__title {
+    font-size: 4.8rem;
+  }
+
+  .works__link {
+    grid-template-columns: 4rem 1fr;
+  }
+
+  .works__name {
+    font-size: 3.6rem;
+  }
+
+  .works__cta {
+    display: none;
+  }
+}

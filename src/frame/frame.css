@@ -95,9 +95,11 @@
   transform-origin: right center;
 }
 
-/* All at the top on a phone: the bottom of a narrow screen is the demo's own (hints, controls) */
+/* All at the top on a phone: the bottom of a narrow screen is the demo's own (hints, controls).
+   It scrolls away with the page instead of sitting over a demo that scrolls. */
 @media (max-width: 767px) {
   .frame {
+    position: absolute;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto 1fr;
     grid-template-areas:

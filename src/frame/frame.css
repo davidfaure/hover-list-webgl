@@ -1,0 +1,131 @@
+/* In px: it must not follow the demo's own rem */
+.frame {
+  --frame-color: #151c13;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "effect author"
+    ". ."
+    "steps tags";
+  gap: 16px 32px;
+  padding: 24px 28px;
+  color: var(--frame-color);
+  font: 400 13px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  pointer-events: none;
+}
+
+.frame--dark {
+  --frame-color: #f9f1e7;
+}
+
+.frame p {
+  margin: 0;
+}
+
+.frame__effect {
+  grid-area: effect;
+}
+
+.frame__author {
+  grid-area: author;
+  text-align: right;
+}
+
+.frame__branch,
+.frame__label,
+.frame__steps [aria-current] {
+  opacity: 0.5;
+}
+
+.frame__links,
+.frame__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.frame__author .frame__links {
+  justify-content: flex-end;
+}
+
+.frame__steps {
+  grid-area: steps;
+  align-self: end;
+}
+
+.frame__tags {
+  grid-area: tags;
+  align-self: end;
+  text-align: right;
+  opacity: 0.5;
+}
+
+/* The folio's link: a line that leaves to the right on hover */
+.frame a {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.frame a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.frame a:hover::after,
+.frame a:focus-visible::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+/* All at the top on a phone: the bottom of a narrow screen is the demo's own (hints, controls) */
+@media (max-width: 767px) {
+  .frame {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "effect"
+      "author"
+      "steps"
+      ".";
+    gap: 8px;
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  .frame__tags {
+    display: none;
+  }
+
+  .frame__author {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+
+  .frame__author .frame__links {
+    justify-content: flex-start;
+  }
+
+  .frame__steps {
+    align-self: start;
+  }
+}
